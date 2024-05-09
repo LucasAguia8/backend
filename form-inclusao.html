@@ -19,18 +19,18 @@
     </header>
     <main>
         <h1>Formulario de Inclussão</h1>
-        <form method="post" action="cliente-insert.php">
+        <form>
             <p>
                 <label for="inCodigo">codigo</label>
                 <input type="number" name="codigo" id="inCodigo">
             </p>
             <p>
-                <label for="inCodigo">nome</label>
-                <input type="number" name="codigo" id="inCodigo">
+                <label for="inNome">nome</label>
+                <input type="text" name="codigo" id="inNome">
             </p>
             <p>
-                <label for="inCodigo">email</label>
-                <input type="number" name="codigo" id="inCodigo">
+                <label for="inEmail">email</label>
+                <input type="email" name="codigo" id="inEmail">
             </p>
             <p>
                 <input type="reset">
@@ -38,6 +38,8 @@
             </p>
         </form>
     </main>
+    <script src="js/ajax-submit.js"></script>
+    <div id="resp"></div>
     <footer>
         <!-- place footer here -->
     </footer>
