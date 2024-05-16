@@ -1,7 +1,7 @@
-const btn = document.getElementById("btn");
+const btn1 = document.getElementById("btn1");
 const content = document.getElementById("content");
 
-btn.addEventListener("click", (e) => {
+btn1.addEventListener("click", (e) => {
    const req = new XMLHttpRequest();
    req.onload = function () {
       if (req.status == 200) {

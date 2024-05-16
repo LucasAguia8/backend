@@ -1,5 +1,5 @@
 <?php
-$filename = "txt/clientes2.csv";
+$filename = "txt/clientes.csv";
 
 //tenta abrir o arquivo
 $file = fopen($filename, "r");

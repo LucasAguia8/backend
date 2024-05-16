@@ -3,7 +3,7 @@
 $cliente = json_decode(file_get_contents('php://input'));
 
 //nome do arquivo CSV
-$filename = "txt/clientes2.csv";
+$filename = "txt/clientes.csv";
 
 //tenta abrir o arquivo no modo "append" (incluir no final)
 $file = fopen($filename, "a");
