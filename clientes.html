@@ -12,7 +12,25 @@
   </head>
   <body>
     <button id="btn" class="btn btn-primary">Click-me!!</button>
+    <button id="btnIncluirCliente" class="btn btn-secondary">Novo Cliente</button>
     <div id="content"></div>
+    <br>
+    <form id="frmIncluirCliente" style="display: none;">
+      <h1>Fomulario de Inclussão</h1>
+      <p>
+          <label for="inNome">nome</label>
+          <input type="text" name="nome" id="inNome">
+      </p>
+      <p>
+          <label for="inEmail">email</label>
+          <input type="email" name="email" id="inEmail">
+      </p>
+      <p>
+          <input type="reset" id="btnReset" class="btn btn-warning" value="Reset">
+          <input type="submit" id="btnIncluir" class="btn btn-success" value="submit">
+      </p>
+  </form>
+
     <!-- Bootstrap JavaScript Libraries -->
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.5/dist/umd/popper.min.js" integrity="sha384-Xe+8cL9oJa6tN/veChSP7q+mnSPaj5Bcu9mPX5F5xIGE0DVittaqT5lorf0EI7Vk" crossorigin="anonymous"></script>
 

@@ -1,8 +1,36 @@
 const btn = document.getElementById("btn");
+const btnIncluirCliente = document.getElementById("btnIncluirCliente");
+const btnIncluir = document.getElementById("btnIncluir");
 const content = document.getElementById("content");
 
-btn.addEventListener("click", buscaClientes());
-document.addEventListener("load", buscaClientes());
+btnIncluirCliente.addEventListener("click", (e) =>{
+   const frmIncluirCliente = document.getElementById("frmIncluirCliente");
+   frmIncluirCliente.style.setProperty("display", "block");
+});
+
+btnIncluir.addEventListener("click", (e) => {
+   const xhr = new XMLHttpRequest();
+   let cliente = new FormData(document.getElementById("frmIncluirCliente"));
+   xhr.onload = function() {
+      if(xhr.status == 200) {
+         alert(xhr.responseText);
+         alert("Inclussão Ok!");
+         buscaClientes();
+         const frmIncluirCliente = document.getElementById("frmIncluirCliente");
+         frmIncluirCliente.style.setProperty("display", "none");
+         frmIncluirCliente.reset();
+      } else {
+         alert("Erro na Inclussão");
+      }
+   }
+   xhr.open("POST", "insert-cliente.php");
+   // o metodo POST é o metodo para incluir alguma coisa com uma url especifica
+   xhr.send(cliente);
+   e.preventDefault();
+});
+
+btn.addEventListener("click", buscaClientes);
+document.addEventListener("DOMContentLoaded", buscaClientes);
 
 function buscaClientes() {
    const req = new XMLHttpRequest();
