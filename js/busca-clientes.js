@@ -3,7 +3,7 @@ const btnIncluirCliente = document.getElementById("btnIncluirCliente");
 const btnIncluir = document.getElementById("btnIncluir");
 const content = document.getElementById("content");
 
-btnIncluirCliente.addEventListener("click", (e) =>{
+btnIncluirCliente.addEventListener("click", (e) => {
    const frmIncluirCliente = document.getElementById("frmIncluirCliente");
    frmIncluirCliente.style.setProperty("display", "block");
 });
@@ -11,8 +11,8 @@ btnIncluirCliente.addEventListener("click", (e) =>{
 btnIncluir.addEventListener("click", (e) => {
    const xhr = new XMLHttpRequest();
    let cliente = new FormData(document.getElementById("frmIncluirCliente"));
-   xhr.onload = function() {
-      if(xhr.status == 200) {
+   xhr.onload = function () {
+      if (xhr.status == 200) {
          alert(xhr.responseText);
          alert("Inclussão Ok!");
          buscaClientes();
@@ -46,14 +46,18 @@ function buscaClientes() {
          const vetorClientes = JSON.parse(this.responseText);
          //Converte a resposta da requisição (provavelmente em formato JSON) para um objeto JavaScript.
          //O objeto resultante contém informações sobre os clientes.
-         console.log(vetorClientes);
-         console.log(typeof(vetorClientes));
+         //console.log(vetorClientes);
+         //console.log(typeof (vetorClientes));
          // buscar registros de clientes
          for (let cliente of vetorClientes) {
             html += "<tr>";
             html += `<td>${cliente.codigo}</td>`;
             html += `<td>${cliente.nome}</td>`;
-            html += `<td>${cliente.email}</td>`;            
+            html += `<td>${cliente.email}</td>`;
+            html += `<td>`;
+            html += `<button class="btn btn-info" onClick="showClienteUpdForm(${cliente.codigo})"><i class="fa-solid fa-pencil"></i></button>`;
+            html += `<button class="btn btn-danger" onClick="delCliente(${cliente.codigo})"><i class="fa-solid fa-trash-can"></i></button>`;
+            html += `</td>`;
             html += "</tr>";
          }
          //Esse trecho de código está criando linhas para uma tabela HTML com informações de clientes
@@ -71,3 +75,25 @@ function buscaClientes() {
    req.send();
    //esse código está solicitando informações do arquivo “busca-clientes.php” no servidor. 
 }
+
+function delCliente(id){
+   if(confirm("Confirma a exclusão do registro?") == true){
+      let data = new FormData();
+      data.append("id", id);
+      for (let [k,v] of data) {
+         console.log(`${k}:${v}`)
+      }
+      let xhr = new XMLHttpRequest();
+      xhr.onload = function(){
+         if(xhr.status == 200){
+            //alert(xhr.responseText);
+            buscaClientes();
+         }
+         else{
+            alert(`Erro: ${xhr.status} ${xhr.statusText}`);
+         }
+      }
+      xhr.open("POST","cliente-delete.php");
+      xhr.send(data);
+   }
+};
